@@ -31,6 +31,10 @@ body {
   outline: none;
 }
 
+.load-btn.hidden {
+  display: none;
+}
+
 .img-container {
   display: none;
   width: 800px;

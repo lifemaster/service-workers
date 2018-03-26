@@ -1,35 +1,19 @@
+// Register service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+    .then(registration => console.log('Service worker has been registered: ', registration))
+    .catch(err => console.error(err));
+}
+
 const loadBtn = document.getElementById('load-btn');
 const imgContainer = document.getElementById('img-container');
-const img = new Image();
 
 loadBtn.addEventListener('click', e => {
-  imgContainer.innerHTML = '';
-  imgContainer.classList.remove('visible');
+  const img = document.createElement('img');
 
-  loadImage('img.jpg')
-    .then(response => {
-      const imageURL = window.URL.createObjectURL(response);
-      img.src = imageURL;
-      imgContainer.appendChild(img);
-      imgContainer.classList.add('visible');
-    })
-    .catch(err => console.error(err));
+  img.setAttribute('src', 'img.jpg');
+  imgContainer.appendChild(img);
+  imgContainer.classList.add('visible');
+
+  loadBtn.classList.add('hidden');
 });
-
-function loadImage(url) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        resolve(xhr.response);
-      } else {
-        reject(new Error(`Image didn't load successfully; error code: ${xhr.statusText}`));
-      }
-    }
-  });
-}
