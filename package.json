@@ -1,0 +1,15 @@
+{
+  "name": "service-worker",
+  "version": "1.0.0",
+  "description": "Simple application for show how service workers work",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kostya Shyika",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
