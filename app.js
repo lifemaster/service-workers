@@ -5,10 +5,11 @@ const app = express();
 let requestCounter = 0;
 
 app.use((req, res, next) => {
-  console.log(`${++requestCounter}: ${req.url}`);
+  console.log('\x1b[33m', `${++requestCounter}: ${req.url}`, '\x1b[0m');
   console.log('Request headers: ', req.headers);
   console.log('-------------------------------');
-  next();
+
+  setTimeout(() => next(), 5000);
 });
 
 app.use(express.static('public'));
