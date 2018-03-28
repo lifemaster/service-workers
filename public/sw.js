@@ -20,7 +20,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   console.log('Request to server is processing. Event: ', e);
 
-  e.respondWith(caches.match(e.request).then(response => response || fetch(event.request)));
+  e.respondWith(caches.match(e.request).then(response => response || fetch(e.request)));
 
   // update cache
   e.waitUntil(updateCache(e.request));
